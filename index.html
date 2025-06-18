@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>amm rupali</title>
+    <title>কার্যকরী কীটনাশক পণ্য</title>
     <style>
         /* General Styles */
         body {
@@ -12,7 +12,7 @@
             padding: 0;
             line-height: 1.6;
             color: #333;
-            background-color: #f9f9f9;
+            background-color: #f9f9f9; /* Main background */
             overflow-x: hidden;
         }
         .container {
@@ -36,7 +36,7 @@
         }
         .btn {
             display: inline-block;
-            background-color: #F16334;
+            background-color: #38A169; /* Default button color - Main Green */
             color: #fff;
             padding: 10px 20px;
             text-decoration: none;
@@ -45,9 +45,10 @@
             transition: background-color 0.3s ease;
             cursor: pointer;
             border: none;
+            text-align: center;
         }
         .btn:hover {
-            background-color: #d85429;
+            background-color: #2F855A; /* Darker Green for hover */
         }
         .btn:disabled {
             background-color: #ccc;
@@ -67,12 +68,16 @@
             padding-top: 40px;
             padding-bottom: 40px;
         }
-        .checkout-form-section .container-for-title {
+        .checkout-form-section {
+             background-color: #F0FFF4; /* Light Green background */
              padding-top: 20px;
              padding-bottom: 40px;
         }
+        .checkout-form-section .container-for-title {
+             padding-top: 0; /* Adjusted */
+        }
         .title-fullwidth-accent { 
-            background-color: #F16334;
+            background-color: #38A169; /* Main Green */
             color: #fff !important;
             padding: 15px 25px;       
             text-align: center;
@@ -86,6 +91,15 @@
             margin-right: auto;        
             box-sizing: border-box;    
         }
+        .title-fullwidth-accent a { /* Style for link within the title */
+            color: inherit;
+            text-decoration: none;
+            cursor: pointer;
+        }
+        .title-fullwidth-accent a:hover {
+             text-decoration: underline; /* Optional: add underline on hover */
+        }
+
 
         .hero-section {
             background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('img/B1.jpg') no-repeat center center/cover;
@@ -98,10 +112,6 @@
         }
         .hero-section .container p { font-size: 1.2em; margin-bottom: 30px; }
 
-        .product-availability img {
-            margin: 20px auto; border: 1px solid #ddd;
-            border-radius: 5px; max-width: 700px;
-        }
         .product-gallery-section { padding-top: 0; padding-bottom: 40px; text-align: center; }
         .slider-container {
             position: relative; width: 100%; max-width: 900px; 
@@ -120,7 +130,7 @@
             width: 100%; height: 352px; object-fit: cover;
             display: block; border-radius: 5px; 
         }
-        .slider-btn { /* General slider button style */
+        .slider-btn { 
             position: absolute; top: 50%; transform: translateY(-50%);
             background-color: rgba(44, 62, 80, 0.6); color: white; border: none;
             padding: 10px; cursor: pointer; font-size: 1.8em; z-index: 10;
@@ -146,22 +156,7 @@
         }
         .usp-section ul li {
             background-color: #e9ecef; padding: 10px 15px; margin-bottom: 8px;
-            border-radius: 5px; border-left: 5px solid #F16334;
-        }
-        .usp-section .video-proof-container {
-            max-width: 100%; margin: 0 auto 20px auto;
-        }
-        .usp-section .video-proof {
-            display: flex; flex-wrap: wrap; justify-content: center;
-            gap: 20px; padding: 10px 0;
-        }
-        .usp-section .video-item {
-            flex: 1 1 400px; max-width: 480px; min-width: 300px;
-            border-radius: 8px; overflow: hidden; box-shadow: 0 4px 8px rgba(0,0,0,0.15);
-        }
-        .usp-section .video-item iframe {
-            display: block; width: 100%; height: auto;
-            aspect-ratio: 16 / 9; border: none;
+            border-radius: 5px; border-left: 5px solid #38A169; /* Main Green */
         }
         
         .faq-section .accordion { max-width: 700px; margin: 0 auto; } 
@@ -189,7 +184,6 @@
         }
         .payment-instructions h2 { color: #856404; font-size: 1.2em; margin-bottom: 10px; }
         
-        .checkout-form-section { background-color: #e9f5ff; border-radius: 0; }
         .form-grid { display: grid; grid-template-columns: 1fr; gap: 30px; }
         @media (min-width: 768px) { .form-grid { grid-template-columns: 1fr 1fr; } }
         .form-column, .order-summary-column {
@@ -204,45 +198,71 @@
         }
         .form-group select { width: 100%; }
 
-        .product-options .product-item { 
-            display: flex;
-            align-items: center;
-            border: 1px solid #eee;
-            padding: 10px;
-            margin-bottom: 10px;
-            border-radius: 4px;
+        /* Product Card Styles */
+        .product-options {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 20px;
+            margin-bottom: 20px;
         }
-        .product-options .product-item img {
-            width: 60px;
-            height: 60px;
-            object-fit: cover;
-            margin-right: 15px;
-            border-radius: 4px;
-            flex-shrink: 0;
-        }
-        .product-options .product-item input[type="checkbox"] {
-            margin-right: 10px;
-            transform: scale(1.2);
-            flex-shrink: 0;
-        }
-        .product-options .product-info-main {
-            flex-grow: 1;
+        .product-item-card {
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            background-color: #fff;
+            padding: 15px;
+            text-align: center;
             display: flex;
             flex-direction: column;
-            text-align: left;
+            justify-content: space-between;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            transition: box-shadow 0.3s ease;
         }
-        .product-options .product-title {
+        .product-item-card:hover {
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        .product-card-image {
+            width: 100%;
+            height: 160px; 
+            object-fit: cover; 
+            margin-bottom: 12px;
+            border-radius: 4px;
+        }
+        .product-card-title {
+            font-size: 1em; 
             font-weight: bold;
+            color: #333;
             margin-bottom: 8px;
-            font-size: 0.95em;
-            cursor: pointer; 
+            min-height: 40px; 
         }
-        .product-options .quantity-controls {
+        .product-card-price-container {
+            margin-bottom: 12px;
+            min-height: 25px; 
+        }
+        .original-price-card {
+            text-decoration: line-through;
+            color: #888;
+            font-size: 0.85em;
+            margin-right: 8px;
+        }
+        .price-card {
+            font-size: 1.1em; 
+            font-weight: bold;
+            color: #2c3e50; 
+        }
+        .product-card-checkbox { 
+            display: none;
+        }
+        .product-card-interaction-area {
+            margin-bottom: 10px;
+            min-height: 40px; 
+        }
+        .quantity-controls-card {
             display: flex;
             align-items: center;
-            margin-bottom: 8px;
+            justify-content: center;
+            margin: 0 auto 10px auto; 
         }
-        .product-options .quantity-btn {
+        .quantity-controls-card .quantity-btn {
             background-color: #f0f0f0;
             border: 1px solid #ccc;
             color: #333;
@@ -250,63 +270,57 @@
             width: 30px;
             height: 30px;
             font-size: 1.2em;
-            font-weight: bold;
             cursor: pointer;
-            line-height: 28px;
+            line-height: 28px; 
             text-align: center;
             border-radius: 4px;
         }
-        .product-options .quantity-btn:disabled {
+         .quantity-controls-card .quantity-btn:disabled {
             background-color: #e9ecef;
             color: #adb5bd;
             cursor: not-allowed;
         }
-        .product-options .quantity-input {
+        .quantity-controls-card .quantity-card-input {
             width: 40px;
             text-align: center;
-            padding: 5px;
-            height: 18px;
+            padding: 5px 0;
+            height: 18px; 
             border: 1px solid #ccc;
             margin: 0 5px;
             font-size: 1em;
             border-radius: 4px;
             -moz-appearance: textfield;
         }
-        .product-options .quantity-input::-webkit-outer-spin-button,
-        .product-options .quantity-input::-webkit-inner-spin-button {
+        .quantity-controls-card .quantity-card-input::-webkit-outer-spin-button,
+        .quantity-controls-card .quantity-card-input::-webkit-inner-spin-button {
           -webkit-appearance: none;
           margin: 0;
         }
-        .product-options .price-container {
-            display: flex;
-            align-items: baseline;
-            margin-bottom: 5px; /* Space before details button */
-        }
-        .product-options .price {
-            font-weight: bold;
-            color: #F16334;
-            font-size: 1.1em;
-        }
-        .product-options .original-price {
-            text-decoration: line-through;
-            color: #777;
-            font-size: 0.9em;
-            margin-right: 8px;
-        }
-        .details-btn {
-            font-size: 0.8em;
-            padding: 3px 8px;
-            background-color: #5cb85c;
+        .btn-order-item-card { 
+            background-color: #28a745; 
+            border-color: #28a745;
             color: white;
-            border: none;
-            border-radius: 3px;
-            cursor: pointer;
-            margin-top: 5px;
-            display: inline-block;
-            text-decoration: none;
+            padding: 8px 15px;
+            width: 100%;
+            font-size: 0.9em;
+            margin-bottom: 10px; 
         }
-        .details-btn:hover {
-            background-color: #4cae4c;
+        .btn-order-item-card:hover {
+            background-color: #218838;
+            border-color: #1e7e34;
+        }
+        .details-btn-card { 
+            background-color: #6c757d; /* Neutral Gray */
+            border-color: #6c757d;   /* Neutral Gray */
+            color: white;
+            padding: 8px 15px;
+            width: 100%;
+            font-size: 0.9em;
+            margin-top: auto; 
+        }
+        .details-btn-card:hover {
+            background-color: #5a6268; /* Darker Neutral Gray */
+            border-color: #545b62;   /* Darker Neutral Gray */
         }
 
         .shipping-options label, .payment-options label {
@@ -324,9 +338,6 @@
         .order-summary th { background-color: #f2f2f2; }
         .order-summary .total-row td { font-weight: bold; font-size: 1.1em; }
         
-        .bkash-payment-details { 
-            /* Initially hidden, shown by JS */
-        }
         .bkash-payment-details p { text-align: left; margin-bottom: 5px;}
         .bkash-payment-details .form-group { margin-top: 15px;}
         
@@ -354,13 +365,12 @@
         }
         .loader-overlay.active { visibility: visible; opacity: 1; }
         .loader {
-            border: 8px solid #f3f3f3; border-top: 8px solid #F16334;
+            border: 8px solid #f3f3f3; border-top: 8px solid #38A169; /* Main Green */
             border-radius: 50%; width: 60px; height: 60px;
             animation: spin 1s linear infinite;
         }
         @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
 
-        /* Modal Styles */
         .modal {
             display: none; 
             position: fixed; 
@@ -374,10 +384,7 @@
             padding-top: 30px; 
             animation: fadeInModal 0.3s ease-out;
         }
-        @keyframes fadeInModal {
-            from {opacity: 0;}
-            to {opacity: 1;}
-        }
+        @keyframes fadeInModal { from {opacity: 0;} to {opacity: 1;} }
         .modal-content {
             background-color: #fefefe;
             margin: 2% auto; 
@@ -390,10 +397,7 @@
             box-shadow: 0 5px 15px rgba(0,0,0,0.3);
             animation: slideInModal 0.3s ease-out;
         }
-        @keyframes slideInModal {
-            from {transform: translateY(-50px); opacity: 0;}
-            to {transform: translateY(0); opacity: 1;}
-        }
+        @keyframes slideInModal { from {transform: translateY(-50px); opacity: 0;} to {transform: translateY(0); opacity: 1;} }
         .close-modal-btn {
             color: #aaa;
             position: absolute; 
@@ -403,123 +407,54 @@
             font-weight: bold;
             line-height: 1;
         }
-        .close-modal-btn:hover,
-        .close-modal-btn:focus {
-            color: black;
-            text-decoration: none;
-            cursor: pointer;
+        .close-modal-btn:hover, .close-modal-btn:focus {
+            color: black; text-decoration: none; cursor: pointer;
         }
-        .modal-body {
-            display: flex;
-            gap: 20px;
-            margin-top: 20px; 
-        }
-        .modal-image-gallery {
-            flex: 0 0 40%; 
-            max-width: 40%;
-        }
+        .modal-body { display: flex; gap: 20px; margin-top: 20px; }
+        .modal-image-gallery { flex: 0 0 40%; max-width: 40%; }
         .modal-main-image {
-            width: 100%;
-            border-radius: 5px;
-            margin-bottom: 10px;
-            border: 1px solid #eee;
-            aspect-ratio: 1 / 1; 
-            object-fit: cover;
+            width: 100%; border-radius: 5px; margin-bottom: 10px;
+            border: 1px solid #eee; aspect-ratio: 1 / 1; object-fit: cover;
         }
-        .modal-thumbnails {
-            display: flex;
-            gap: 5px;
-            flex-wrap: wrap; 
-        }
+        .modal-thumbnails { display: flex; gap: 5px; flex-wrap: wrap; }
         .modal-thumbnails img {
-            width: 60px;
-            height: 60px;
-            object-fit: cover;
-            border: 2px solid transparent;
-            border-radius: 3px;
-            cursor: pointer;
+            width: 60px; height: 60px; object-fit: cover;
+            border: 2px solid transparent; border-radius: 3px; cursor: pointer;
             transition: border-color 0.2s;
         }
-        .modal-thumbnails img:hover, .modal-thumbnails img.active-thumbnail {
-            border-color: #F16334;
-        }
-        .modal-product-info {
-            flex: 1;
-            text-align: left;
-            overflow-y: auto; 
-            max-height: 70vh; 
-        }
-        .modal-product-info h3 {
-            margin-top: 0;
-            color: #2c3e50;
-        }
+        .modal-thumbnails img:hover, .modal-thumbnails img.active-thumbnail { border-color: #38A169; /* Main Green */ }
+        .modal-product-info { flex: 1; text-align: left; overflow-y: auto; max-height: 70vh; }
+        .modal-product-info h3 { margin-top: 0; color: #2c3e50; }
 
-        /* Testimonial Section Styles */
-        .testimonial-section {
-            background-color: #f8f9fa; 
-        }
+        .testimonial-section { background-color: #f8f9fa; }
         .testimonial-slider-container {
-            position: relative;
-            max-width: 700px; 
-            margin: 30px auto;
-            overflow: hidden; /* Important for translateX to work as expected */
+            position: relative; max-width: 700px; margin: 30px auto; overflow: hidden;
         }
-        .testimonial-wrapper {
-            display: flex;
-            /* transition: transform 0.5s ease-in-out; */ /* Transition will be handled by JS for smoother auto-slide */
-        }
+        .testimonial-wrapper { display: flex; }
         .testimonial-item {
-            min-width: 100%; 
-            flex: 0 0 100%;   /* Each item takes full width of the container */
-            box-sizing: border-box;
-            background-color: #fff;
-            padding: 25px;
-            border-radius: 8px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-            text-align: center;
-            /* margin: 0 5px; */ /* Remove if only one item is visible at a time */
+            min-width: 100%; flex: 0 0 100%; box-sizing: border-box;
+            background-color: #fff; padding: 25px; border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1); text-align: center;
         }
         .testimonial-avatar {
-            width: 80px;
-            height: 80px;
-            border-radius: 50%;
-            object-fit: cover;
-            margin: 0 auto 15px auto;
-            border: 3px solid #F16334;
+            width: 80px; height: 80px; border-radius: 50%; object-fit: cover;
+            margin: 0 auto 15px auto; border: 3px solid #38A169; /* Main Green */
         }
         .testimonial-text {
-            font-size: 1em;
-            color: #555;
-            margin-bottom: 15px;
-            font-style: italic;
-            line-height: 1.7;
+            font-size: 1em; color: #555; margin-bottom: 15px;
+            font-style: italic; line-height: 1.7;
         }
-        .testimonial-author {
-            font-weight: bold;
-            color: #333;
-            margin-bottom: 10px;
-        }
-        .testimonial-rating span {
-            color: #f1c40f; 
-            font-size: 1.2em;
-        }
-        .testimonial-section .slider-btn { 
-            background-color: rgba(44, 62, 80, 0.4);
-        }
-        .testimonial-section .slider-btn:hover {
-            background-color: rgba(44, 62, 80, 0.7);
-        }
-        .prev-testimonial-btn {
-            left: 5px; 
-        }
-        .next-testimonial-btn {
-            right: 5px; 
-        }
-
+        .testimonial-author { font-weight: bold; color: #333; margin-bottom: 10px; }
+        .testimonial-rating span { color: #f1c40f; font-size: 1.2em; }
+        .testimonial-section .slider-btn { background-color: rgba(44, 62, 80, 0.4); }
+        .testimonial-section .slider-btn:hover { background-color: rgba(44, 62, 80, 0.7); }
+        .prev-testimonial-btn { left: 5px; }
+        .next-testimonial-btn { right: 5px; }
 
         /* Responsive Styles */
         @media (max-width: 1024px) {
             .usp-section .video-item { flex-basis: calc(50% - 10px); max-width: calc(50% - 10px); }
+            .product-options { grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); }
         }
         @media (max-width: 768px) {
             .hero-section .container h1 { font-size: 2em; } 
@@ -531,28 +466,21 @@
             .product-gallery-section .slider-container .prev-btn { left: 5px; }
             .product-gallery-section .slider-container .next-btn { right: 5px; }
             .usp-section .video-item { max-width: 450px; } 
-            .product-options .product-title { font-size: 0.9em; }
-            .product-options .price { font-size: 1em; }
-
+            .product-options { grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 15px; }
+            .product-card-image { height: 140px; }
+            .product-card-title { font-size: 0.9em; min-height: 35px; }
+            .price-card { font-size: 1em; }
+            .btn-order-item-card, .details-btn-card { font-size: 0.85em; padding: 7px 10px;}
             .prev-testimonial-btn { left: 0px; }
             .next-testimonial-btn { right: 0px; }
         }
         @media (max-width: 600px) {
-            .modal-body {
-                flex-direction: column;
-            }
-            .modal-image-gallery {
-                max-width: 100%;
-                flex: 0 0 auto; 
-            }
-            .modal-content {
-                width: 90%;
-                padding: 15px;
-                margin-top: 10%;
-            }
-             .modal-product-info {
-                max-height: 50vh; 
-            }
+            .modal-body { flex-direction: column; }
+            .modal-image-gallery { max-width: 100%; flex: 0 0 auto;  }
+            .modal-content { width: 90%; padding: 15px; margin-top: 10%; }
+            .modal-product-info { max-height: 50vh; }
+            .product-options { grid-template-columns: repeat(2, 1fr); gap: 10px; } 
+            .product-card-image { height: 120px; }
         }
         @media (max-width: 480px) {
             .hero-section .container h1 { font-size: 1.8em; }
@@ -568,11 +496,8 @@
             .slide { flex: 0 0 100%; margin-right: 0; } .slide img { height: 230px; }
             .slider-btn { padding: 6px; font-size: 1.2em; width: 30px; height: 30px; }
             .usp-section .video-item { flex-basis: 100%; max-width: 100%; min-width: 280px; }
-            .product-options .product-item { flex-wrap: wrap; }
-            .product-options .product-item input[type="checkbox"] { margin-bottom: 5px; }
-            .product-options .product-item img { margin-right: 10px; }
-            .product-options .product-info-main { width: 100%; margin-top: 10px; }
-            .product-options .quantity-controls { margin-bottom: 5px; }
+            .product-options { grid-template-columns: 1fr; } 
+            .product-card-image { height: 150px; }
         }
     </style>
 </head>
@@ -581,78 +506,53 @@
 
     <header class="hero-section">
         <div class="container"> 
-            <h1>নওগাঁর সাপাহারের সেরা নিরাপদ আম, নিজ বাগান থেকে সরাসরি আপনার ঘরে</h1>
-            <p>আমরা আপনাদের জন্য নিয়ে এসেছি আমাদের নিজস্ব বাগান থেকে চাষ করা ১০০% খাঁটি, সতেজ আম।</p>
-            <a href="#checkout-form" class="btn">🧺 অর্ডার করতে চাই</a>
+            <h1>কার্যকরী কীটনাশক পণ্য - আপনার ঘর ও অফিসকে রাখুন পোকামাকড় মুক্ত</h1>
+            <p>বাছাইকৃত সেরা কীটনাশক পণ্য, সরাসরি আপনার দোরগোড়ায়।</p>
+            
         </div>
     </header>
 
-    <section class="product-availability">
-        <h2 class="title-fullwidth-accent">কোন আম কখন পাবেন?</h2>
-        <div class="container-for-title"> 
-            <img src="img/0.jpg" alt="আমের প্রাপ্যতা">
-        </div>
-    </section>
-
-    <section class="product-gallery-section">
-        <h2 class="title-fullwidth-accent gallery-title-fullwidth">এক নজরে আমাদের আম গুলো</h2>
+    <section class="product-gallery-section padded-section">
+        <h2 class="title-fullwidth-accent gallery-title-fullwidth">
+            <a href="#checkout-form">আমাদের কীটনাশক পণ্যের সম্ভার</a>
+        </h2>
         <div class="container"> 
             <div class="slider-container" id="productImageSlider">
                 <div class="slider-wrapper">
-                    <div class="slide"><img src="img/3.jpg" alt="আমের ছবি ১"></div>
-                    <div class="slide"><img src="img/4.jpg" alt="আমের ছবি ২"></div>
-                    <div class="slide"><img src="img/5.jpg" alt="আমের ছবি ৩"></div>
-                    <div class="slide"><img src="img/6.jpg" alt="আমের ছবি ৪"></div>
-                    <div class="slide"><img src="img/7.jpg" alt="আমের ছবি ৫"></div>
-                    <div class="slide"><img src="img/8.jpg" alt="আমের ছবি ৬"></div>
-                    <div class="slide"><img src="img/9.jpg" alt="আমের ছবি ৭"></div>
+                    <div class="slide"><img src="img/3.jpg" alt="কীটনাশক পণ্যের ছবি ১"></div>
+                    <div class="slide"><img src="img/4.jpg" alt="কীটনাশক পণ্যের ছবি ২"></div>
+                    <div class="slide"><img src="img/5.jpg" alt="কীটনাশক পণ্যের ছবি ৩"></div>
+                    <div class="slide"><img src="img/6.jpg" alt="কীটনাশক পণ্যের ছবি ৪"></div>
+                    <div class="slide"><img src="img/7.jpg" alt="কীটনাশক পণ্যের ছবি ৫"></div>
+                    <div class="slide"><img src="img/8.jpg" alt="কীটনাশক পণ্যের ছবি ৬"></div>
+                    <div class="slide"><img src="img/9.jpg" alt="কীটনাশক পণ্যের ছবি ৭"></div>
                 </div>
                 <button class="slider-btn prev-btn" aria-label="Previous Slide">❮</button>
                 <button class="slider-btn next-btn" aria-label="Next Slide">❯</button>
-            </div>
-            <br>
-            <a href="#checkout-form" class="btn">🧺 অর্ডার করতে চাই</a>
+            </div>           
         </div>
     </section>
 
-    <section class="usp-section">
+    <section class="usp-section padded-section">
         <h2 class="title-fullwidth-accent">আমরা অন্যদের থেকে কেন আলাদা?</h2>
         <div class="container-for-title usp-section-content list-container">
             <ul>
-                <li>🥭 আমরা নিজেদের চাষকৃত নিরাপদ আমটাই সরবরাহ করি। আড়ত বা অন্য কোথাও থেকে নয়।</li>
-                <li>🥭 শতভাগ নিরাপদ ও PHI মেইনটেইন করে আম পাঠাই।</li>
-                <li>🥭 আমরা বিগত ৫ বছর সুনামের সাথে আম সেল করি অনলাইনে কুরিয়ারে।</li>
-                <li>🥭 ১৫ বছরের আম চাষের অভিজ্ঞতা ও ৩ বছরের এক্সপোর্ট এর অভিজ্ঞতা।</li>
-                <li>🥭 ই-কমার্সে হাজারো সন্তুষ্ট ক্রেতার আস্থা ও ৫ বছরের সফল অভিজ্ঞতা আমাদের শক্তি।</li>
+                <li>✅ আমরা উন্নত মানের ও পরীক্ষিত কীটনাশক সরবরাহ করি।</li>
+                <li>✅ মানুষের জন্য নিরাপদ এবং পরিবেশ-বান্ধব পণ্য সরবরাহে আমরা সচেষ্ট (যেখানে প্রযোজ্য)।</li>
+                <li>✅ বিগত ৫ বছর ধরে সুনামের সাথে অনলাইনে পণ্য সরবরাহ করছি।</li>
+                <li>✅ কীটনাশক ও পেস্ট কন্ট্রোল বিষয়ে অভিজ্ঞদের পরামর্শে পণ্য বাছাই।</li>
+                <li>✅ হাজারো সন্তুষ্ট ক্রেতার আস্থা ও নির্ভরযোগ্য সেবার প্রতিশ্রুতি।</li>
             </ul>
         </div>
-        
-        <!--
-        <h2 class="title-fullwidth-accent">দেশ সেরা ব্র্যান্ডের আস্থা</h2>
-        <div class="container-for-title usp-section-content">
-            <div class="video-proof-container">
-                <div class="video-proof">
-                    <div class="video-item">
-                        <iframe src="https://www.youtube.com/embed/YOUR_GP_VIDEO_ID_HERE" title="গ্রামীণফোনের সাথে আমাদের পার্টনারশিপ" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-                    </div>
-                    <div class="video-item">
-                        <iframe src="https://www.youtube.com/embed/YOUR_DIPTO_TV_VIDEO_ID_HERE" title="দীপ্ত টিভিতে আমাদের আম" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-                    </div>
-                </div>
-            </div>
-            
-
-            <a href="#checkout-form" class="btn">🧺 অর্ডার করতে চাই</a>
-        </div>
     </section>
-            -->
-    <section class="faq-section">
+
+    <section class="faq-section padded-section">
         <h2 class="title-fullwidth-accent">সম্মানিত গ্রাহকের কিছু প্রশ্ন ও উত্তর</h2>
         <div class="container-for-title">
             <div class="accordion">
                 <div class="accordion-item">
-                    <div class="accordion-title">আম রুপালী'র এর উপর কেন আস্থা রাখবেন ? <span>▼</span></div>
-                    <div class="accordion-content"><p>আমাদের নওগাঁ জেলার সাপাহার উপজেলায় নিজস্ব পৈত্রিক জমিতে ৩০ বিঘা+ আমের বাগান থেকে আম সংগ্রহ করা হয় বলে আপনাদেরকে ১০০% নিরাপদ ও ক্যামিকেল ফ্রি আমের নিশ্চয়তা দিতে পারি। আমাদের এই পথচলায় আমরা পাশে পেয়েছি দেশের সবচেয়ে বড় মোবাইল অপারেটর গ্রামীণফোন ও কৃষি বিষয়ক টিভি চ্যানেল দিপ্ত টিভি।</p></div>
+                    <div class="accordion-title">আমাদের পণ্যের উপর কেন আস্থা রাখবেন? <span>▼</span></div>
+                    <div class="accordion-content"><p>আমাদের রয়েছে বাছাইকৃত, কার্যকর এবং নিরাপদ কীটনাশক পণ্যের সমাহার। গুণগত মান এবং গ্রাহক সন্তুষ্টিই আমাদের প্রধান লক্ষ্য।</p></div>
                 </div>
                 <div class="accordion-item">
                     <div class="accordion-title">ডেলিভারি কতদিনে পাবো? <span>▼</span></div>
@@ -660,61 +560,48 @@
                 </div>
                 <div class="accordion-item">
                     <div class="accordion-title">রিটার্ন পলিসি আছে কি? <span>▼</span></div>
-                    <div class="accordion-content"><p>হ্যাঁ, আমাদের সহজ ২৫-১০০% পর্যন্ত রিটার্ন পলিসি রয়েছে। তবে সেক্ষেত্রে আম রিসিভ করার পর আনবক্সিং এর ভিডিও করে রাখতে হবে। কুরিয়ার এর কারণে বা প্রাকৃতিক কারণে আম নষ্ট হলেও আমরা শতভাগ রিফান্ড করি গ্রাহককে বা আবার আম পাঠাই।</p></div>
+                    <div class="accordion-content"><p>হ্যাঁ, আমাদের সহজ রিটার্ন পলিসি রয়েছে। পণ্যে কোনো ত্রুটি থাকলে বা বিবরণের সাথে অমিল থাকলে আপনি পণ্য ফেরত দিতে পারবেন। বিস্তারিত জানতে আমাদের সাথে যোগাযোগ করুন।</p></div>
                 </div>
                  <div class="accordion-item">
                     <div class="accordion-title">পেমেন্ট করার নিয়ম কি? <span>▼</span></div>
-                    <div class="accordion-content"><p>আম কাচামাল হওয়ায় আমরা অবশ্যই প্রি পেইড অথবা পার্সিয়াল পেমেন্ট ৫০০ টাকা দিয়ে বাকিটা আম কুরিয়ার অফিসে ক্যাশ অন ডেলিভারিতে আম সংগ্রহ করতে পারবেন। অনলাইন পেমেন্ট (বিকাশ, রকেট, নগদ) গ্রহণ করি। 01791835232- পারসোনাল নাম্বার। আমরা প্রতিদিনের অর্ডার এর আম পরের দিন বাগান থেকে পেড়ে পাঠাই। তাই আগের দিন রাতেই অর্ডার কনফার্ম করে নেই। এছাড়াও ক্যাশ অন ডেলিভারি সুবিধাও রয়েছে।</p></div>
+                    <div class="accordion-content"><p>অনলাইন পেমেন্ট (বিকাশ, রকেট, নগদ) গ্রহণ করি। 01791835232- পারসোনাল নাম্বার। আমরা প্রতিদিনের অর্ডার দ্রুত প্রক্রিয়াকরণ করে পাঠাই। এছাড়াও ক্যাশ অন ডেলিভারি সুবিধাও রয়েছে।</p></div>
                 </div>
                 <div class="accordion-item">
                     <div class="accordion-title">পাইকারী, রিসেল এবং কর্পোরেট অর্ডারের সিস্টেম কি? <span>▼</span></div>
-                    <div class="accordion-content"><p>জী, অবশ্যই আমাদের কাছে পাইকারী ভাবে আম নেয়ার সুযোগ আছে, রিসেলার হওয়ার ও সুযোগ আছে এবং আপনার কোম্পানির জন্য গিফট বক্সে ব্রান্ডিং করে আম নেয়ারও অপশন রয়েছে। আমরা প্রতিদিনের অর্ডার এর আম পরের দিন বাগান থেকে পেড়ে পাঠাই। তাই আগের দিন রাতেই অর্ডার কনফার্ম করে নেই।</p></div>
+                    <div class="accordion-content"><p>জী, অবশ্যই আমাদের কাছে পাইকারী ভাবে পণ্য নেয়ার সুযোগ আছে, রিসেলার হওয়ার ও সুযোগ আছে এবং কর্পোরেট অর্ডারের জন্য বিশেষ ব্যবস্থা রয়েছে। বিস্তারিত জানতে আমাদের সাথে যোগাযোগ করুন।</p></div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Testimonial Section -->
     <section class="testimonial-section padded-section">
         <h2 class="title-fullwidth-accent">আমাদের সম্মানিত গ্রাহকদের মতামত</h2>
         <div class="container">
             <div class="testimonial-slider-container">
                 <div class="testimonial-wrapper">
-                    <!-- Testimonial Item 1 -->
                     <div class="testimonial-item">
                         <img src="img/R3.jpg" alt="গ্রাহকের ছবি" class="testimonial-avatar">
-                        <p class="testimonial-text">" আম কিনে আমি খুবই সন্তুষ্ট। আমগুলো ছিল সতেজ এবং খুবই মিষ্টি। ডেলিভারিও সঠিক সময়ে পেয়েছি।"</p>
+                        <p class="testimonial-text">"পণ্য কিনে আমি খুবই সন্তুষ্ট। খুবই কার্যকরী এবং ব্যবহার করাও সহজ। ডেলিভারিও সঠিক সময়ে পেয়েছি।"</p>
                         <p class="testimonial-author">- মোঃ করিম উল্লাহ, ঢাকা</p>
-                        <div class="testimonial-rating">
-                            <span>⭐</span><span>⭐</span><span>⭐</span><span>⭐</span><span>⭐</span>
-                        </div>
+                        <div class="testimonial-rating"><span>⭐</span><span>⭐</span><span>⭐</span><span>⭐</span><span>⭐</span></div>
                     </div>
-                    <!-- Testimonial Item 2 -->
                     <div class="testimonial-item">
                         <img src="img/R1.jpg" alt="গ্রাহকের ছবি" class="testimonial-avatar">
-                        <p class="testimonial-text">"বাগান থেকে সরাসরি এমন কেমিক্যালমুক্ত আম পাওয়ার সুযোগ করে দেওয়ার জন্য ধন্যবাদ। আমের মান ছিল অসাধারণ।"</p>
+                        <p class="testimonial-text">"আপনাদের পণ্য ব্যবহার করে বাসার পোকার উপদ্রব থেকে মুক্তি পেয়েছি। ধন্যবাদ।"</p>
                         <p class="testimonial-author">- মিসেস. সেলিনা বেগম, চট্টগ্রাম</p>
-                        <div class="testimonial-rating">
-                            <span>⭐</span><span>⭐</span><span>⭐</span><span>⭐</span><span>☆</span>
-                        </div>
+                        <div class="testimonial-rating"><span>⭐</span><span>⭐</span><span>⭐</span><span>⭐</span><span>☆</span></div>
                     </div>
-                    <!-- Testimonial Item 3 -->
                     <div class="testimonial-item">
                         <img src="img/R4.jpg" alt="গ্রাহকের ছবি" class="testimonial-avatar">
-                        <p class="testimonial-text">"প্যাকেজিং খুব ভালো ছিল এবং একটি আমও নষ্ট হয়নি। আমি আবার অর্ডার করবো।"</p>
+                        <p class="testimonial-text">"প্যাকেজিং খুব ভালো ছিল এবং পণ্যটি অক্ষত অবস্থায় পেয়েছি। আমি আবার অর্ডার করবো।"</p>
                         <p class="testimonial-author">- জনাব আরিফ হোসেন, খুলনা</p>
-                        <div class="testimonial-rating">
-                            <span>⭐</span><span>⭐</span><span>⭐</span><span>⭐</span><span>⭐</span>
-                        </div>
+                        <div class="testimonial-rating"><span>⭐</span><span>⭐</span><span>⭐</span><span>⭐</span><span>⭐</span></div>
                     </div>
-                     <!-- Testimonial Item 4 -->
                     <div class="testimonial-item">
                         <img src="img/R2.jpg" alt="গ্রাহকের ছবি" class="testimonial-avatar">
-                        <p class="testimonial-text">"এই বছর সেরা আম খেলাম আপনাদের এখান থেকে"</p>
+                        <p class="testimonial-text">"আপনাদের সেবা ও পণ্যের মানে আমি মুগ্ধ।"</p>
                         <p class="testimonial-author">- সুমাইয়া রহমান, রাজশাহী</p>
-                        <div class="testimonial-rating">
-                            <span>⭐</span><span>⭐</span><span>⭐</span><span>⭐</span><span>⭐</span>
-                        </div>
+                        <div class="testimonial-rating"><span>⭐</span><span>⭐</span><span>⭐</span><span>⭐</span><span>⭐</span></div>
                     </div>
                 </div>
                 <button class="slider-btn prev-testimonial-btn" aria-label="Previous Testimonial">❮</button>
@@ -728,7 +615,7 @@
             <div class="payment-instructions">
                 <h2>বিকাশ পেমেন্টের জন্য নির্দেশাবলী</h2>
                 <p><strong>বিকাশ পারসোনাল নাম্বার: 01791835232</strong> নাম্বার ব্যবহার করে অগ্রিম টাকা সেন্ড মানি (send money) করে নিচের Bkash এর ফাঁকা ঘরে যে নাম্বার থেকে টাকা পাঠিয়েছেন সেই নাম্বার এবং ট্রানজেকশন আইডি বসিয়ে অর্ডারটি সম্পূর্ণ করবেন।</p>
-                 <p>ক্যাশ অন ডেলিভারির ক্ষেত্রে ডেলিভারি ম্যানের কাছে সরাসরি মূল্য পরিশোধ করতে পারবেন। বিভিন্ন ওজনে ভিন্ন ডেলিভারি ফি প্রযোজ্য, যেমন ১১ কেজি আমের জন্য ১২০ টাকা, ২২ কেজি আমের জন্য ২৪০ টাকা।</p>
+                 <p>ক্যাশ অন ডেলিভারির ক্ষেত্রে ডেলিভারি ম্যানের কাছে সরাসরি মূল্য পরিশোধ করতে পারবেন। পণ্যের ওজন ও ডেলিভারি পদ্ধতির উপর ভিত্তি করে ডেলিভারি ফি প্রযোজ্য হবে।</p>
             </div>
         </div>
     </section>
@@ -790,7 +677,6 @@
                         <div class="payment-options">
                             <label>
                                 <input type="radio" name="পেমেন্ট পদ্ধতি" value="বিকাশ" checked> বিকাশ
-                              <!-- <img src="https://logowik.com/content/uploads/images/bkash-payment-gateway5027.jpg" alt="bKash" style="height:20px; vertical-align:middle; margin-left:5px;"> -->
                             </label>
                              <label>
                                 <input type="radio" name="পেমেন্ট পদ্ধতি" value="ক্যাশ অন ডেলিভারি"> ক্যাশ অন ডেলিভারি
@@ -816,40 +702,31 @@
         </div>
     </section>
 
-    <section class="payment-policy-section">
+    <section class="payment-policy-section padded-section">
         <h2 class="title-fullwidth-accent">💳 পেমেন্ট পলিসি</h2>
         <div class="container-for-title">
             <div class="payment-policy">
-                <p>আম একটি পচনশীল ফল। আমরা সরবরাহ করি শতভাগ কেমিক্যালমুক্ত, হাতে বাছাই করা আম—যা কোনো স্টকে রাখা নয়, অর্ডার নিশ্চিত হওয়ার পরই বাগান থেকে সংগ্রহ করা হয়।</p>
-                <p>তাই টাটকা ও মানসম্পন্ন পণ্য পৌঁছে দিতে অর্ডার নিশ্চিত হওয়ার সঙ্গে সঙ্গেই সংগ্রহ, প্যাকেজিং ও দ্রুত ডেলিভারি প্রক্রিয়া শুরু হয়। ক্যাশ অন ডেলিভারি এবং বিকাশ পেমেন্ট উভয় সুবিধাই রয়েছে।</p>
+                <p>আমরা সরবরাহ করি উন্নত মানের ও কার্যকর কীটনাশক পণ্য। প্রতিটি পণ্য সাবধানে বাছাই করা হয় এবং গুণগত মান নিশ্চিত করা হয়।</p>
+                <p>অর্ডার নিশ্চিত হওয়ার সঙ্গে সঙ্গেই প্যাকেজিং ও দ্রুত ডেলিভারি প্রক্রিয়া শুরু হয়। ক্যাশ অন ডেলিভারি এবং বিকাশ পেমেন্ট উভয় সুবিধাই রয়েছে।</p>
                 <p>আপনি নির্ভয়ে ও নিশ্চিন্তে অর্ডার করতে পারেন।</p>
-                <p>👉 একবার অর্ডার করেই দেখুন—বিশ্বাসটা মিষ্টি ফলের মতোই অনুভব করবেন!</p>
+                <p>👉 একবার অর্ডার করেই দেখুন—পার্থক্যটা নিজেই অনুভব করবেন!</p>
             </div>
         </div>
     </section>
 
     <footer>
         <div class="container"> 
-            <p id="CcopyrightText">Copyright © 2024</p>
-            <!--
-            <div class="social-links">
-                <a href="https://facebook.com/yourpage" target="_blank" title="Facebook">FB</a>
-                <a href="https://wa.me/01791835232" target="_blank" title="WhatsApp">WA</a>
-            </div>-->
-            
+            <p id="CcopyrightText">Copyright © 2024 </p>
         </div>
     </footer>
 
-    <!-- Product Details Modal -->
     <div id="productDetailsModal" class="modal">
         <div class="modal-content">
             <span class="close-modal-btn">×</span>
             <div class="modal-body">
                 <div class="modal-image-gallery">
                     <img id="modalMainImage" src="" alt="পণ্যের ছবি" class="modal-main-image">
-                    <div id="modalThumbnails" class="modal-thumbnails">
-                        <!-- থাবনেইল ছবিগুলো এখানে জাভাস্ক্রিপ্ট দিয়ে আসবে -->
-                    </div>
+                    <div id="modalThumbnails" class="modal-thumbnails"></div>
                 </div>
                 <div class="modal-product-info">
                     <h3 id="modalProductName">পণ্যের নাম</h3>
@@ -860,7 +737,6 @@
             </div>
         </div>
     </div>
-
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
@@ -876,14 +752,14 @@
                     renderProducts(allProductsData);
                     initializeProductEventListeners(); 
                     initializeModalEventListeners(); 
-                    initializeTestimonialSlider(); // Initialize testimonial slider here
+                    initializeTestimonialSlider(); 
                     handlePaymentMethodChange(); 
                     updateOrderSummary(); 
                 } catch (error) {
                     console.error("Could not load products:", error);
                     const container = document.getElementById('productOptionsContainer');
                     if (container) {
-                        container.innerHTML = '<p style="color:red; text-align:left;">দুঃখিত, পণ্য তালিকা লোড করা যায়নি। ('+ error.message +') <br>অনুগ্রহ করে নিশ্চিত করুন `products.json` ফাইলে প্রতিটি পণ্যের জন্য `weight_kg`, `description` এবং `gallery_images` (ঐচ্ছিক) উল্লেখ করা আছে এবং ফাইলটি সঠিক স্থানে আছে। <br> কিছুক্ষণ পর আবার চেষ্টা করুন অথবা অ্যাডমিনের সাথে যোগাযোগ করুন।</p>';
+                        container.innerHTML = `<p style="color:red; text-align:left;">দুঃখিত, পণ্য তালিকা লোড করা যায়নি। (${error.message})</p>`;
                     }
                 }
             }
@@ -893,69 +769,126 @@
                 if (!container) return;
                 container.innerHTML = ''; 
 
-                products.forEach(product => {
+                products.forEach(product => { 
                     const productItemDiv = document.createElement('div');
-                    productItemDiv.classList.add('product-item');
+                    productItemDiv.classList.add('product-item-card');
                     productItemDiv.dataset.id = product.id; 
                     productItemDiv.dataset.price = product.price;
-                    productItemDiv.dataset.weightKg = product.weight_kg || 1; 
+                    productItemDiv.dataset.weightKg = product.weight_kg || 0.1; 
 
                     if (product.original_price && product.original_price > 0) {
                         productItemDiv.dataset.originalPrice = product.original_price;
                     }
+                    // No more out-of-stock class based on product.available
 
-                    let originalPriceHTML = product.original_price && product.original_price > 0 ? `<span class="original-price">৳${product.original_price}</span>` : '';
-                    const detailsButtonHTML = `<button type="button" class="details-btn" data-product-id="${product.id}">বিস্তারিত</button>`;
-
+                    let originalPriceHTML = product.original_price && product.original_price > 0 ? `<span class="original-price-card">৳${product.original_price}</span>` : '';
+                    
                     productItemDiv.innerHTML = `
-                        <input type="checkbox" id="checkbox_${product.id}" name="product_selection" data-product-name="${product.data_product_name || product.name}">
-                        <img src="${product.image_url}" alt="${product.alt_text || product.name}">
-                        <div class="product-info-main">
-                            <label for="checkbox_${product.id}" class="product-title">${product.name}</label>
-                            <div class="quantity-controls">
-                                <button type="button" class="quantity-btn minus-btn" aria-label="Decrease quantity" disabled>-</button>
-                                <input type="number" class="quantity-input" name="quantity_${product.id}" value="1" min="1" readonly>
-                                <button type="button" class="quantity-btn plus-btn" aria-label="Increase quantity" disabled>+</button>
-                            </div>
-                            <div class="price-container">
-                                ${originalPriceHTML}
-                                <span class="price">৳${product.price}</span>
-                            </div>
-                            ${detailsButtonHTML} 
+                        <img src="${product.image_url}" alt="${product.alt_text || product.name}" class="product-card-image">
+                        <h4 class="product-card-title">${product.name}</h4>
+                        <div class="product-card-price-container">
+                            ${originalPriceHTML}
+                            <span class="price-card">৳${product.price}</span>
                         </div>
+                        <div class="product-card-interaction-area">
+                            <input type="checkbox" id="checkbox_${product.id}" name="product_selection" data-product-name="${product.data_product_name || product.name}" class="product-card-checkbox">
+                            
+                            <button type="button" class="btn btn-order-item-card" data-product-id="${product.id}">অর্ডার করুন</button>
+                            <div class="quantity-controls-card" style="display: none;">
+                                <button type="button" class="quantity-btn minus-btn" aria-label="Decrease quantity">-</button>
+                                <input type="number" class="quantity-input quantity-card-input" name="quantity_${product.id}" value="1" min="1" readonly>
+                                <button type="button" class="quantity-btn plus-btn" aria-label="Increase quantity">+</button>
+                            </div>
+                        </div>
+                        <button type="button" class="btn details-btn-card" data-product-id="${product.id}">বিস্তারিত</button>
                     `;
                     container.appendChild(productItemDiv);
                 });
             }
             
             function initializeProductEventListeners() {
-                const currentProductItems = document.querySelectorAll('.product-options .product-item');
-                currentProductItems.forEach(item => {
-                    const checkbox = item.querySelector('input[type="checkbox"]');
-                    const quantityInput = item.querySelector('.quantity-input');
+                const productItems = document.querySelectorAll('.product-item-card');
+                productItems.forEach(item => {
+                    const productId = item.dataset.id; // Still useful for identifying the product item
+
+                    const checkbox = item.querySelector(`#checkbox_${productId}`);
+                    const orderButton = item.querySelector('.btn-order-item-card');
+                    const quantityControlsDiv = item.querySelector('.quantity-controls-card');
+                    const quantityInput = item.querySelector('.quantity-card-input');
                     const minusBtn = item.querySelector('.minus-btn');
                     const plusBtn = item.querySelector('.plus-btn');
-                    const titleLabel = item.querySelector('.product-title');
+                    const titleLabel = item.querySelector('.product-card-title');
 
-                    checkbox.addEventListener('change', updateOrderSummary);
-                    if(titleLabel) {
-                        titleLabel.addEventListener('click', () => {
-                            checkbox.checked = !checkbox.checked;
-                            checkbox.dispatchEvent(new Event('change'));
+                    function setUiState(isSelected) {
+                        // All products are treated as available
+                        if (isSelected) {
+                            if (orderButton) orderButton.style.display = 'none';
+                            if (quantityControlsDiv) quantityControlsDiv.style.display = 'flex';
+                            if (quantityInput) quantityInput.readOnly = false;
+                            if (minusBtn) minusBtn.disabled = (parseInt(quantityInput.value) <= 1);
+                            if (plusBtn) plusBtn.disabled = false;
+                        } else {
+                            if (orderButton) orderButton.style.display = 'block'; 
+                            if (quantityControlsDiv) quantityControlsDiv.style.display = 'none';
+                            if (quantityInput) {
+                                quantityInput.value = 1; 
+                                quantityInput.readOnly = true;
+                            }
+                            if (minusBtn) minusBtn.disabled = true;
+                            if (plusBtn) plusBtn.disabled = true;
+                        }
+                    }
+
+                    if (checkbox) {
+                        setUiState(checkbox.checked); // Set initial state based on checkbox
+                    }
+
+                    if (orderButton) { 
+                        orderButton.addEventListener('click', () => {
+                            if (checkbox) {
+                                checkbox.checked = true; 
+                                checkbox.dispatchEvent(new Event('change')); 
+                            }
                         });
                     }
-                    minusBtn.addEventListener('click', () => {
-                        let val = parseInt(quantityInput.value);
-                        if (val > 1) { quantityInput.value = val - 1; updateOrderSummary(); }
-                    });
-                    plusBtn.addEventListener('click', () => {
-                        quantityInput.value = parseInt(quantityInput.value) + 1; updateOrderSummary();
-                    });
-                    quantityInput.addEventListener('change', () => { 
-                         if (isNaN(parseInt(quantityInput.value)) || parseInt(quantityInput.value) < 1) quantityInput.value = 1;
-                         updateOrderSummary();
-                    });
-                    quantityInput.addEventListener('input', updateOrderSummary);
+
+                    if (checkbox) { 
+                         checkbox.addEventListener('change', () => {
+                            setUiState(checkbox.checked);
+                            updateOrderSummary();
+                        });
+                    }
+                    
+                    if (minusBtn) { 
+                        minusBtn.addEventListener('click', () => {
+                            if (!quantityInput || !checkbox) return;
+                            let val = parseInt(quantityInput.value);
+                            if (val > 1) { 
+                                quantityInput.value = val - 1; 
+                                if(plusBtn) plusBtn.disabled = false;
+                                minusBtn.disabled = (val - 1 <= 1); 
+                                updateOrderSummary(); 
+                            } else { 
+                                checkbox.checked = false;
+                                checkbox.dispatchEvent(new Event('change')); 
+                            }
+                        });
+                    }
+                    if (plusBtn) { 
+                        plusBtn.addEventListener('click', () => {
+                            if (!quantityInput) return; 
+                            quantityInput.value = parseInt(quantityInput.value) + 1; 
+                            if(minusBtn) minusBtn.disabled = false;
+                            updateOrderSummary();
+                        });
+                    }
+
+                    if(titleLabel && checkbox) { 
+                        titleLabel.addEventListener('click', () => {
+                            checkbox.checked = !checkbox.checked; 
+                            checkbox.dispatchEvent(new Event('change')); 
+                        });
+                    }
                 });
             }
 
@@ -964,12 +897,12 @@
                 if (!modal) return;
                 const closeModalBtn = modal.querySelector('.close-modal-btn');
                 
-                document.querySelectorAll('.details-btn').forEach(button => {
-                    button.addEventListener('click', function() {
-                        const productId = this.dataset.productId;
+                document.getElementById('productOptionsContainer').addEventListener('click', function(event) {
+                    if (event.target.classList.contains('details-btn-card')) {
+                        const productId = event.target.dataset.productId;
                         const product = allProductsData.find(p => p.id === productId);
                         if (product) openProductModal(product);
-                    });
+                    }
                 });
 
                 closeModalBtn.addEventListener('click', () => modal.style.display = "none");
@@ -982,7 +915,7 @@
                 document.getElementById('modalProductName').textContent = product.name;
                 document.getElementById('modalProductDescription').innerHTML = product.description ? product.description.replace(/\n/g, '<br>') : "বিস্তারিত বিবরণ উপলব্ধ নেই।";
                 document.getElementById('modalProductPrice').textContent = `৳${product.price}`;
-                document.getElementById('modalProductWeight').textContent = `${product.weight_kg || 1} কেজি`;
+                document.getElementById('modalProductWeight').textContent = `${product.weight_kg || 0.1} কেজি`;
 
                 const thumbnailsContainer = document.getElementById('modalThumbnails');
                 thumbnailsContainer.innerHTML = ''; 
@@ -1009,7 +942,6 @@
             
             loadProducts(); 
 
-            // Smooth scroll
             document.querySelectorAll('a[href^="#"]').forEach(anchor => {
                 anchor.addEventListener('click', function (e) {
                     e.preventDefault();
@@ -1020,7 +952,6 @@
                 });
             });
 
-            // FAQ Accordion
             document.querySelectorAll('.accordion-item .accordion-title').forEach(title => {
                 title.addEventListener('click', () => {
                     const item = title.parentElement;
@@ -1052,7 +983,6 @@
                 });
             });
 
-            // Product Image Slider
             const productImageSlider = document.getElementById('productImageSlider');
             if (productImageSlider) {
                 const sliderWrapper = productImageSlider.querySelector('.slider-wrapper');
@@ -1065,12 +995,12 @@
                 let autoSlideIntervalProduct;
                 const autoSlideDelayProduct = 4000;
 
-                function getVisibleSlidesCountProduct() { // Renamed to avoid conflict
+                function getVisibleSlidesCountProduct() { 
                     if (window.innerWidth <= 480) return 1;
                     if (window.innerWidth <= 768) return 2;
                     return 3;
                 }
-                function updateSliderStylesAndVisibilityProduct() { // Renamed
+                function updateSliderStylesAndVisibilityProduct() { 
                     visibleSlides = getVisibleSlidesCountProduct();
                     if (!slides.length) return;
                     const gap = (visibleSlides > 1) ? 15 : 0;
@@ -1089,7 +1019,7 @@
                     if(prevButton) prevButton.style.display = showButtons ? 'flex' : 'none';
                     if(nextButton) nextButton.style.display = showButtons ? 'flex' : 'none';
                 }
-                function showProductSlide(index, animate = true) { // Renamed
+                function showProductSlide(index, animate = true) { 
                     if (!slides.length || !slides[0] || !slides[0].offsetParent) return;
                     const firstSlide = slides[0];
                     const slideWidth = firstSlide.offsetWidth;
@@ -1099,22 +1029,22 @@
                     sliderWrapper.style.transition = animate ? 'transform 0.7s cubic-bezier(0.65, 0, 0.35, 1)' : 'none';
                     sliderWrapper.style.transform = `translateX(${offset}px)`;
                 }
-                function nextProductSlide() { // Renamed
+                function nextProductSlide() { 
                     const maxIndex = Math.max(0, totalSlides - visibleSlides);
                     currentIndex = (currentIndex + 1) > maxIndex ? 0 : currentIndex + 1;
                     showProductSlide(currentIndex);
                 }
-                function prevProductSlide() { // Renamed
+                function prevProductSlide() { 
                     const maxIndex = Math.max(0, totalSlides - visibleSlides);
                     currentIndex = (currentIndex - 1) < 0 ? maxIndex : currentIndex - 1;
                     showProductSlide(currentIndex);
                 }
-                function startAutoProductSlide() { // Renamed
+                function startAutoProductSlide() { 
                     stopAutoProductSlide();
                     if (totalSlides > visibleSlides) autoSlideIntervalProduct = setInterval(nextProductSlide, autoSlideDelayProduct);
                 }
-                function stopAutoProductSlide() { clearInterval(autoSlideIntervalProduct); } // Renamed
-                function setupProductSlider() { // Renamed
+                function stopAutoProductSlide() { clearInterval(autoSlideIntervalProduct); } 
+                function setupProductSlider() { 
                     if (totalSlides === 0) {
                        if(prevButton) prevButton.style.display = 'none';
                        if(nextButton) nextButton.style.display = 'none';
@@ -1142,13 +1072,9 @@
                 });
             }
 
-            // Testimonial Slider (Auto + Loop)
             function initializeTestimonialSlider() {
                 const testimonialSliderContainer = document.querySelector('.testimonial-slider-container');
-                if (!testimonialSliderContainer) {
-                    console.warn("Testimonial slider container not found.");
-                    return;
-                }
+                if (!testimonialSliderContainer) return;
 
                 const testimonialWrapper = testimonialSliderContainer.querySelector('.testimonial-wrapper');
                 const testimonialItems = testimonialWrapper ? Array.from(testimonialWrapper.querySelectorAll('.testimonial-item')) : [];
@@ -1158,7 +1084,7 @@
                 let currentTestimonialIndex = 0;
                 const totalTestimonials = testimonialItems.length;
                 let testimonialInterval;
-                const testimonialSlideDelay = 5000; // 5 seconds
+                const testimonialSlideDelay = 5000; 
 
                 function updateTestimonialButtonStates() {
                     if (!prevTestimonialBtn || !nextTestimonialBtn || totalTestimonials <= 1) {
@@ -1168,78 +1094,40 @@
                     }
                     prevTestimonialBtn.style.display = 'flex';
                     nextTestimonialBtn.style.display = 'flex';
-                    // For looping slider, buttons are always enabled if totalTestimonials > 1
-                    // prevTestimonialBtn.disabled = false; 
-                    // nextTestimonialBtn.disabled = false;
                 }
 
                 function showTestimonial(index, useTransition = true) {
                     if (!testimonialWrapper || totalTestimonials === 0) return;
-                    
                     testimonialWrapper.style.transition = useTransition ? 'transform 0.5s ease-in-out' : 'none';
-                    const offset = -index * 100;
-                    testimonialWrapper.style.transform = `translateX(${offset}%)`;
-                    currentTestimonialIndex = index; // Update global index
-                    // updateTestimonialButtonStates(); // Buttons are always active in loop
+                    testimonialWrapper.style.transform = `translateX(${-index * 100}%)`;
+                    currentTestimonialIndex = index; 
                 }
 
-                function nextTestimonial() {
-                    let nextIndex = (currentTestimonialIndex + 1) % totalTestimonials;
-                    showTestimonial(nextIndex);
-                }
-
-                function prevTestimonial() {
-                    let prevIndex = (currentTestimonialIndex - 1 + totalTestimonials) % totalTestimonials;
-                    showTestimonial(prevIndex);
-                }
-
+                function nextTestimonial() { showTestimonial((currentTestimonialIndex + 1) % totalTestimonials); }
+                function prevTestimonial() { showTestimonial((currentTestimonialIndex - 1 + totalTestimonials) % totalTestimonials); }
                 function startAutoTestimonialSlide() {
-                    stopAutoTestimonialSlide(); // Clear existing interval
-                    if (totalTestimonials > 1) { // Only start if more than one item
-                        testimonialInterval = setInterval(nextTestimonial, testimonialSlideDelay);
-                    }
+                    stopAutoTestimonialSlide(); 
+                    if (totalTestimonials > 1) testimonialInterval = setInterval(nextTestimonial, testimonialSlideDelay);
                 }
-
-                function stopAutoTestimonialSlide() {
-                    clearInterval(testimonialInterval);
-                }
+                function stopAutoTestimonialSlide() { clearInterval(testimonialInterval); }
 
                 if (totalTestimonials > 0) {
-                    updateTestimonialButtonStates(); // Set initial button visibility
-                    showTestimonial(0, false); // Show first without transition initially
-                    
-                    if (nextTestimonialBtn) {
-                        nextTestimonialBtn.addEventListener('click', () => {
-                            nextTestimonial();
-                            stopAutoTestimonialSlide(); // Optional: stop auto on manual nav
-                            startAutoTestimonialSlide(); // Optional: restart auto on manual nav
-                        });
-                    }
-                    if (prevTestimonialBtn) {
-                        prevTestimonialBtn.addEventListener('click', () => {
-                            prevTestimonial();
-                            stopAutoTestimonialSlide(); // Optional
-                            startAutoTestimonialSlide(); // Optional
-                        });
-                    }
-
+                    updateTestimonialButtonStates(); 
+                    showTestimonial(0, false); 
+                    if (nextTestimonialBtn) nextTestimonialBtn.addEventListener('click', () => { nextTestimonial(); stopAutoTestimonialSlide(); startAutoTestimonialSlide(); });
+                    if (prevTestimonialBtn) prevTestimonialBtn.addEventListener('click', () => { prevTestimonial(); stopAutoTestimonialSlide(); startAutoTestimonialSlide(); });
                     testimonialSliderContainer.addEventListener('mouseenter', stopAutoTestimonialSlide);
                     testimonialSliderContainer.addEventListener('mouseleave', startAutoTestimonialSlide);
-                    
-                    startAutoTestimonialSlide(); // Start autoslide
+                    startAutoTestimonialSlide(); 
                 } else {
                     if(prevTestimonialBtn) prevTestimonialBtn.style.display = 'none';
                     if(nextTestimonialBtn) nextTestimonialBtn.style.display = 'none';
-                    console.warn("No testimonial items found to display.");
                 }
             }
-
 
             const shippingRadios = document.querySelectorAll('input[name="শিপিং পদ্ধতি"]');
             const paymentMethodRadios = document.querySelectorAll('input[name="পেমেন্ট পদ্ধতি"]');
             const bkashPaymentDetailsDiv = document.getElementById('bkashPaymentDetails');
-            const bkashNumberInput = document.getElementById('bkash_number');
-            const bkashTrxIdInput = document.getElementById('bkash_trx_id');
             const orderForm = document.getElementById('orderForm');
             const submitOrderBtn = document.getElementById('submitOrderBtn');
             const loaderOverlay = document.getElementById('loaderOverlay');
@@ -1267,9 +1155,11 @@
                 const courier = document.getElementById('billing_courier').value;
                 const paymentMethodRadio = document.querySelector('input[name="পেমেন্ট পদ্ধতি"]:checked');
                 const selectedPaymentMethodValue = paymentMethodRadio ? paymentMethodRadio.value : '';
+                const bkashNumberInput = document.getElementById('bkash_number');
+                const bkashTrxIdInput = document.getElementById('bkash_trx_id');
                 
                 let productsSelectedCount = 0;
-                document.querySelectorAll('.product-options .product-item input[type="checkbox"]:checked').forEach(() => productsSelectedCount++);
+                document.querySelectorAll('.product-card-checkbox:checked').forEach(() => productsSelectedCount++);
 
                 if (productsSelectedCount === 0) {
                     alert('অনুগ্রহ করে অন্তত একটি পণ্য নির্বাচন করুন।');
@@ -1286,15 +1176,15 @@
                 }
 
                 let selectedProductsDetails = "";
-                document.querySelectorAll('.product-options .product-item').forEach(item => {
-                    const checkbox = item.querySelector('input[type="checkbox"]');
-                    if (checkbox.checked) {
-                        const productName = checkbox.dataset.productName || item.querySelector('.product-title').textContent;
-                        const quantity = item.querySelector('.quantity-input').value; 
+                document.querySelectorAll('.product-item-card').forEach(item => {
+                    const checkbox = item.querySelector('.product-card-checkbox');
+                    if (checkbox && checkbox.checked) {
+                        const productName = checkbox.dataset.productName || item.querySelector('.product-card-title').textContent;
+                        const quantity = item.querySelector('.quantity-card-input').value; 
                         const price = item.dataset.price;
-                        const weightPerUnit = parseFloat(item.dataset.weightKg) || 1;
+                        const weightPerUnit = parseFloat(item.dataset.weightKg) || 0.1;
                         const totalItemWeight = quantity * weightPerUnit;
-                        selectedProductsDetails += `${productName} (পরিমাণ: ${quantity} ইউনিট, মোট ওজন: ${totalItemWeight.toFixed(1)} কেজি, একক মূল্য: ৳${price}); `;
+                        selectedProductsDetails += `${productName} (পরিমাণ: ${quantity}, মোট ওজন: ${totalItemWeight.toFixed(1)} কেজি, একক মূল্য: ৳${price}); `;
                     }
                 });
 
@@ -1321,8 +1211,14 @@
                     if (data && data.result === 'success') {
                         alert(data.message || 'আপনার অর্ডার সফলভাবে প্লেস করা হয়েছে।');
                         orderForm.reset();
-                        document.querySelectorAll('.product-options .product-item input[type="checkbox"]').forEach(cb => cb.checked = false);
-                        document.querySelectorAll('.product-options .product-item .quantity-input').forEach(inp => inp.value = 1);
+                        document.querySelectorAll('.product-card-checkbox').forEach(cb => cb.checked = false);
+                        document.querySelectorAll('.quantity-card-input').forEach(inp => inp.value = 1);
+                        document.querySelectorAll('.product-item-card').forEach(card => {
+                            const orderBtn = card.querySelector('.btn-order-item-card');
+                            const qtyControls = card.querySelector('.quantity-controls-card');
+                            if (orderBtn) orderBtn.style.display = 'block'; 
+                            if (qtyControls) qtyControls.style.display = 'none';
+                        });
                         handlePaymentMethodChange(); 
                         updateOrderSummary(); 
                     } else {
@@ -1338,9 +1234,11 @@
                     loaderOverlay.classList.remove('active');
                 });
             });
-
-            document.getElementById('copyrightText').textContent = `Copyright © ${new Date().getFullYear()} amm rupali। সর্বস্বত্ব সংরক্ষিত।`;
-        }); // End of DOMContentLoaded
+            const copyrightElem = document.getElementById('CcopyrightText');
+            if (copyrightElem) {
+                copyrightElem.textContent = `Copyright © ${new Date().getFullYear()}`;
+            }
+        }); 
 
         function updateOrderSummary() {
             const cartItemsTableBody = document.getElementById('cartItems');
@@ -1355,24 +1253,17 @@
             if (!cartItemsTableBody) return;
             cartItemsTableBody.innerHTML = '';
 
-            document.querySelectorAll('.product-options .product-item').forEach(item => {
-                const checkbox = item.querySelector('input[type="checkbox"]');
-                const quantityInput = item.querySelector('.quantity-input');
-                const minusBtn = item.querySelector('.minus-btn');
-                const plusBtn = item.querySelector('.plus-btn');
-
-                if (checkbox.checked) {
-                    quantityInput.readOnly = false; 
-                    minusBtn.disabled = false;
-                    plusBtn.disabled = false;
-
+            document.querySelectorAll('.product-item-card').forEach(item => {
+                const checkbox = item.querySelector('.product-card-checkbox');
+                
+                if (checkbox && checkbox.checked) {
+                    const quantityInput = item.querySelector('.quantity-card-input');
                     let quantity = parseInt(quantityInput.value); 
-                    if (isNaN(quantity) || quantity < 1) { quantity = 1; quantityInput.value = 1; }
-                    minusBtn.disabled = (quantity <= 1);
-
+                    if (isNaN(quantity) || quantity < 1) { quantity = 1; if(quantityInput) quantityInput.value = 1; }
+                    
                     const price = parseFloat(item.dataset.price);
-                    const weightPerUnit = parseFloat(item.dataset.weightKg) || 1; 
-                    const productName = checkbox.dataset.productName || item.querySelector('.product-title').textContent;
+                    const weightPerUnit = parseFloat(item.dataset.weightKg) || 0.1; 
+                    const productName = checkbox.dataset.productName || item.querySelector('.product-card-title').textContent;
                     
                     const itemTotalValue = price * quantity;
                     subtotal += itemTotalValue;
@@ -1383,10 +1274,6 @@
                     const row = cartItemsTableBody.insertRow();
                     row.insertCell(0).textContent = `${productName} × ${quantity}`;
                     row.insertCell(1).textContent = `৳${itemTotalValue.toFixed(2)}`;
-                } else {
-                    quantityInput.readOnly = true;
-                    minusBtn.disabled = true;
-                    plusBtn.disabled = true;
                 }
             });
 
@@ -1396,8 +1283,16 @@
                 const shippingMethod = checkedShippingRadio.value;
                 if (shippingMethod === "হোম ডেলিভারি") {
                     if (totalWeightKg > 0) {
-                        const numberOfBlocks = Math.ceil(totalWeightKg / 11);
-                        shippingCost = numberOfBlocks * 120;
+                        const baseShipping = 60; 
+                        const additionalPerKgBlock = 20; 
+                        const kgBlockSize = 5;
+                        let additionalBlocks = 0;
+                        if (totalWeightKg > 1) { 
+                             additionalBlocks = Math.ceil((totalWeightKg -1) / kgBlockSize);
+                        }
+                        shippingCost = baseShipping + (additionalBlocks * additionalPerKgBlock);
+                        if (totalWeightKg <=1 && totalWeightKg > 0) shippingCost = baseShipping; 
+                        if (totalWeightKg == 0) shippingCost = 0;
                     }
                 } else if (shippingMethod === "কুরিয়ার অফিস ডেলিভারي") {
                     shippingCost = 0; 
