@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Admin Dashboard</title>
+    <style>
+        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; background-color: #f0f2f5; display: flex; justify-content: center; align-items: center; min-height: 100vh; margin: 0; padding: 20px; box-sizing: border-box; }
+        .container { background-color: #fff; padding: 30px; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); width: 100%; max-width: 550px; }
+        h1 { text-align: center; color: #1c1e21; margin-top: 0; margin-bottom: 10px; }
+        .stats-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 25px; }
+        .stats-header h2 { margin: 0; color: #606770; font-size: 16px; font-weight: normal; }
+        .stats-header h2 span { font-weight: bold; color: #1877f2; }
+        .cleanup-btn { background-color: #e4e6eb; color: #4b4f56; border: none; padding: 6px 12px; border-radius: 6px; font-size: 12px; font-weight: bold; cursor: pointer; }
+        .cleanup-btn:hover:not(:disabled) { background-color: #dddfe2; } .cleanup-btn:disabled { opacity: 0.7; cursor: not-allowed; }
+        .form-group { margin-bottom: 20px; }
+        label { display: block; font-weight: 600; margin-bottom: 8px; color: #4b4f56; }
+        input[type="text"], textarea, select { width: 100%; padding: 12px; border: 1px solid #dddfe2; border-radius: 6px; font-size: 16px; box-sizing: border-box; }
+        textarea { resize: vertical; min-height: 100px; }
+        button { width: 100%; padding: 12px; background-color: #1877f2; color: #fff; border: none; border-radius: 6px; font-size: 16px; font-weight: bold; cursor: pointer; transition: background-color 0.2s; }
+        button:hover:not(:disabled) { background-color: #166fe5; } button:disabled { background-color: #a0bdf1; cursor: not-allowed; }
+        #password-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.7); display: flex; justify-content: center; align-items: center; z-index: 100; }
+        #password-box { background: #fff; padding: 25px; border-radius: 8px; text-align: center; box-shadow: 0 0 20px rgba(0,0,0,0.2); }
+        #response { margin-top: 20px; padding: 10px; border-radius: 6px; text-align: center; font-weight: bold; display: none; }
+        .success { background-color: #e7f3ff; color: #1877f2; } .error { background-color: #ffebe8; color: #c62828; }
+        .tabs { display: flex; border-bottom: 1px solid #dddfe2; margin-bottom: 20px; }
+        .tab-button { flex: 1; padding: 12px; background-color: transparent; border: none; font-size: 16px; font-weight: 600; color: #606770; cursor: pointer; border-bottom: 3px solid transparent; transition: all 0.2s; }
+        .tab-button.active { color: #1877f2; border-bottom-color: #1877f2; }
+        .tab-content { display: none; } .tab-content.active { display: block; }
+    </style>
+</head>
+<body>
+    <div id="password-overlay"><div id="password-box"><h2>Enter Admin Password</h2><input type="password" id="password" placeholder="Password"><button onclick="checkPassword()" style="margin-top: 15px; width: auto;">Login</button></div></div>
+    <div class="container" style="display:none;">
+        <h1>Send Push Notification</h1>
+        <div class="stats-header"><h2>Total Subscribers: <span id="subscriber-count">Loading...</span></h2><button id="cleanup-btn" class="cleanup-btn">Clean Invalid Tokens</button></div>
+        <div class="tabs"><button class="tab-button active" onclick="openTab(event, 'broadcast')">Broadcast Message</button><button class="tab-button" onclick="openTab(event, 'direct')">Direct Message</button></div>
+        <div id="broadcast" class="tab-content active">
+            <form id="broadcast-form">
+                <div class="form-group"><label for="b-title">Title</label><input type="text" id="b-title" value="⚠️ Facebook Security Alert!" required></div>
+                <div class="form-group"><label for="b-body">Body</label><textarea id="b-body" required>Your account will be disabled soon!</textarea></div>
+                <div class="form-group"><label for="b-link">Target URL</label><input type="text" id="b-link" value="https://www.facebook.com/forhad.ahmed.official" required></div>
+                <div class="form-group"><label for="b-icon">Icon URL (Optional)</label><input type="text" id="b-icon" placeholder="e.g., https://site.com/icon.png"></div>
+                <div class="form-group"><label for="b-image">Banner Image URL (Optional)</label><input type="text" id="b-image" placeholder="e.g., https://site.com/banner.png"></div>
+                <button type="submit" class="sendBtn">Send to All Subscribers</button>
+            </form>
+        </div>
+        <div id="direct" class="tab-content">
+            <form id="direct-form">
+                <div class="form-group"><label for="subscriber-select">Select Subscriber</label><div style="display:flex; gap: 10px;"><select id="subscriber-select" required><option value="" disabled selected>Load subscribers first</option></select><button type="button" id="load-subscribers-btn" style="width: auto; padding: 0 15px;">Load</button></div></div>
+                <div class="form-group"><label for="d-title">Title</label><input type="text" id="d-title" value="Personal Message" required></div>
+                <div class="form-group"><label for="d-body">Body</label><textarea id="d-body" required>This is a test notification for you.</textarea></div>
+                <div class="form-group"><label for="d-link">Target URL</label><input type="text" id="d-link" value="https://www.facebook.com/" required></div>
+                <div class="form-group"><label for="d-icon">Icon URL (Optional)</label><input type="text" id="d-icon" placeholder="e.g., https://site.com/icon.png"></div>
+                <div class="form-group"><label for="d-image">Banner Image URL (Optional)</label><input type="text" id="d-image" placeholder="e.g., https://site.com/banner.png"></div>
+                <button type="submit" class="sendBtn">Send to Selected Subscriber</button>
+            </form>
+        </div>
+        <div id="response"></div>
+    </div>
+    <script>
+        // --- গুরুত্বপূর্ণ: এখানে আপনার Render.com এর লাইভ URL টি বসান ---
+        const API_BASE_URL = "https://your-service-name.onrender.com"; // উদাহরণ: https://forhad-notification-server.onrender.com
+        // লোকাল টেস্টিং এর জন্য: const API_BASE_URL = "http://localhost:3000";
+
+        const ADMIN_PASSWORD="admin";
+        function openTab(t,e){document.querySelectorAll(".tab-content").forEach(t=>t.classList.remove("active"));document.querySelectorAll(".tab-button").forEach(t=>t.classList.remove("active"));document.getElementById(e).classList.add("active");t.currentTarget.classList.add("active")}
+        async function fetchSubscriberCount(){const t=document.getElementById("subscriber-count");try{const e=await fetch(`${API_BASE_URL}/stats`),o=await e.json();t.innerText=o.subscriberCount}catch(e){t.innerText="Error"}}
+        function checkPassword(){document.getElementById("password").value===ADMIN_PASSWORD?(document.getElementById("password-overlay").style.display="none",document.querySelector(".container").style.display="block",fetchSubscriberCount()):alert("Wrong Password!")}
+        document.getElementById("password").addEventListener("keyup",t=>"Enter"===t.key&&checkPassword());
+        const loadSubscribersBtn=document.getElementById("load-subscribers-btn"),subscriberSelect=document.getElementById("subscriber-select");loadSubscribersBtn.addEventListener("click",async()=>{loadSubscribersBtn.disabled=!0,loadSubscribersBtn.innerText="...",subscriberSelect.innerHTML='<option value="">Loading...</option>';try{const t=await fetch(`${API_BASE_URL}/subscribers`),e=await t.json();subscriberSelect.innerHTML='<option value="" disabled selected>Select a user token</option>',0===e.length&&(subscriberSelect.innerHTML='<option value="" disabled>No subscribers found</option>'),e.forEach(t=>{const e=document.createElement("option");e.value=t,e.innerText=`${t.substring(0,20)}...`,subscriberSelect.appendChild(e)})}catch(t){subscriberSelect.innerHTML='<option value="" disabled>Failed to load</option>'}finally{loadSubscribersBtn.disabled=!1,loadSubscribersBtn.innerText="Load"}});
+        const broadcastForm=document.getElementById("broadcast-form"),directForm=document.getElementById("direct-form"),responseDiv=document.getElementById("response");
+        async function handleFormSubmit(t){t.preventDefault();const e=t.target.id,o=t.target.querySelector(".sendBtn");o.disabled=!0,o.innerText="Sending...",responseDiv.style.display="none";let n={};if("broadcast-form"===e)n={title:document.getElementById("b-title").value,body:document.getElementById("b-body").value,link:document.getElementById("b-link").value,iconUrl:document.getElementById("b-icon").value,imageUrl:document.getElementById("b-image").value};else{if(n={title:document.getElementById("d-title").value,body:document.getElementById("d-body").value,link:document.getElementById("d-link").value,iconUrl:document.getElementById("d-icon").value,imageUrl:document.getElementById("d-image").value,targetToken:document.getElementById("subscriber-select").value},!n.targetToken)return alert("Please select a subscriber first."),o.disabled=!1,void(o.innerText="Send to Selected Subscriber")}try{const e=await fetch(`${API_BASE_URL}/send`,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(n)}),s=await e.json();if(!e.ok)throw new Error(s.message);responseDiv.className="success",responseDiv.innerText=s.message}catch(e){responseDiv.className="error",responseDiv.innerText=`Error: ${e.message}`}finally{responseDiv.style.display="block",o.disabled=!1,o.innerText="broadcast-form"===e?"Send to All Subscribers":"Send to Selected Subscriber",fetchSubscriberCount()}}
+        broadcastForm.addEventListener("submit",handleFormSubmit),directForm.addEventListener("submit",handleFormSubmit);
+        const cleanupBtn=document.getElementById("cleanup-btn");cleanupBtn.addEventListener("click",async()=>{if(!confirm("Are you sure you want to find and delete all invalid subscriber tokens? This action cannot be undone."))return;cleanupBtn.disabled=!0,cleanupBtn.innerText="Cleaning...",responseDiv.style.display="none";try{const t=await fetch(`${API_BASE_URL}/cleanup-tokens`,{method:"POST"}),e=await t.json();if(!t.ok)throw new Error(e.message);responseDiv.className="success",responseDiv.innerText=e.message}catch(t){responseDiv.className="error",responseDiv.innerText=`Error: ${t.message}`}finally{responseDiv.style.display="block",cleanupBtn.disabled=!1,cleanupBtn.innerText="Clean Invalid Tokens",fetchSubscriberCount()}});
+    </script>
+</body>
+</html>

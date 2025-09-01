@@ -1,0 +1,7 @@
+# Firebase service account key
+service-account-key.json
+# Node.js dependencies
+node_modules
+# OS generated files
+.DS_Store
+Thumbs.db
